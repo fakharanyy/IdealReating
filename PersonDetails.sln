@@ -8,6 +8,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonDetails.Tests", "PersonDetails.Tests\PersonDetails.Tests.csproj", "{5DABE87E-F1C4-4308-BB12-2FA58A815D90}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{69C3CFE1-9DD7-4D3F-9684-D2C237C92A3C}"
+	ProjectSection(SolutionItems) = preProject
+		..\.dockerignore = ..\.dockerignore
+		..\docker-compose.yml = ..\docker-compose.yml
+		..\init-mongo.js = ..\init-mongo.js
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,10 +31,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{09DE8D32-3188-454F-9EC9-F492D26DCAA6} = {69C3CFE1-9DD7-4D3F-9684-D2C237C92A3C}
-		{5DABE87E-F1C4-4308-BB12-2FA58A815D90} = {69C3CFE1-9DD7-4D3F-9684-D2C237C92A3C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2DDFC790-7017-47E9-9A07-462BFBD91D76}
