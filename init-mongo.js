@@ -1,19 +1,19 @@
-db.createUser({
+    db.createUser({
     user: 'admin',
     pwd: 'Test123!',
     roles: [
         {
             role: 'readWrite',
-            db: 'UserDB',
+            db: 'PersonDb',
         },
     ],
 });
 
-db = new Mongo().getDB('UserDB');
+db = new Mongo().getDB('PersonDb');
 
-db.createCollection('users', { capped: false });
+db.createCollection('Persons', { capped: false });
 
-db.users.insertMany([
+db.Persons.insertMany([
     {
         name: 'Ahmed Mohammed',
         telephoneNumber: '20-010334445',

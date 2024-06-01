@@ -22,13 +22,13 @@ builder.Services.AddSingleton<IMongoClient, MongoClient>(sp =>
 });
 
 // Add Repositories
-//builder.Services.AddSingleton<IPersonRepository, CsvPersonRepository>(sp =>
-//    new CsvPersonRepository("persons.csv"));
-//builder.Services.AddTransient<IPersonRepository, SqlPersonRepository>();
+builder.Services.AddSingleton<IPersonRepository, CsvPersonRepository>(sp =>
+    new CsvPersonRepository("persons.csv"));
+builder.Services.AddTransient<IPersonRepository, SqlPersonRepository>();
 builder.Services.AddTransient<IPersonRepository, MongoPersonRepository>(sp =>
 {
     var client = sp.GetRequiredService<IMongoClient>();
-    return new MongoPersonRepository(client, "persondb", "persons");
+    return new MongoPersonRepository(client, "PersonDb", "Persons");
 });
 
 // Add Person Service
