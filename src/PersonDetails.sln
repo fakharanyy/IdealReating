@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PersonDetails", "PersonDetails", "{119F45DB-AC4B-47E5-A397-61C0620A36D4}"
-ProjectSection(SolutionItems) = preProject
+ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CAB7D7E6-FB32-4D95-9958-6210BDF66FA7}"
+	ProjectSection(SolutionItems) = preProject
 		..\..\..\.dockerignore = ..\..\..\.dockerignore
 		..\..\..\docker-compose.yml = ..\..\..\docker-compose.yml
 		..\..\..\Dockerfile = ..\..\..\Dockerfile
 		..\..\..\init-mongo.js = ..\..\..\init-mongo.js
 	EndProjectSection
+
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{69C3CFE1-9DD7-4D3F-9684-D2C237C92A3C}"
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonDetails.Api", "PersonDetails.Api\PersonDetails.Api.csproj", "{09DE8D32-3188-454F-9EC9-F492D26DCAA6}"
 EndProject
@@ -17,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonDetails.Tests", "Pers
 EndProject
 EndProject
 	
-EndProject
+ 
  
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
