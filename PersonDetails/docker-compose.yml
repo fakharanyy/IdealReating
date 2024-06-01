@@ -1,0 +1,49 @@
+version: '3.4'
+
+services:
+  persondetailsapi:
+    image: persondetails
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=db;Database=PersonDb;User=sa;Password=password123;
+      - ConnectionStrings__MongoDb=mongodb://mongo:27017
+    depends_on:
+      - db
+      - mongo
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: "password123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+
+  mongo:
+    image: mongo:latest-windowsservercore
+    container_name: mongodb-container
+    command: mongod --auth --bind_ip_all
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ${HOME}/.aspnet/https:/https
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_HTTPS_PORT=5001
+      - Kestrel__Endpoints__Http__Url=http://*:80
+      - ASPNETCORE_ENVIRONMENT= Development
+
+    environment:
+      MONGO_INITDB_DATABASE: UserDB
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: Test123!
+
+volumes:
+  mongodb-data:
+    driver: local  
