@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Person Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+            border-bottom: 2px solid #ddd;
+        }
+
+        td {
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e2e2e2;
+        }
+    </style>
+    <script>
+        async function fetchPersons(filter = '') {
+            try {
+                const response = await fetch(`/api/persons?filter=${filter}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const persons = await response.json();
+                const tableBody = document.getElementById('personTableBody');
+                tableBody.innerHTML = '';
+
+                persons.forEach(person => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                             <td>${person.firstName}</td>
+                             <td>${person.lastName}</td>
+                             <td>${person.telephoneCode}-${person.telephoneNumber}</td>
+                             <td>${person.address}</td>
+                             <td>${person.country}</td>
+                         `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Failed to fetch persons:', error);
+            }
+        }
+
+        window.onload = () => {
+            fetchPersons();
+
+            document.getElementById('filterInput').addEventListener('input', (event) => {
+                fetchPersons(event.target.value);
+            });
+        };
+    </script>
+</head>
+<body>
+<h1>Person Details</h1>
+<input type="text" id="filterInput" placeholder="Filter by name, phone, address, or country">
+<table>
+    <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Country</th>
+    </tr>
+    </thead>
+    <tbody id="personTableBody">
+    </tbody>
+</table>
+</body>
+</html>

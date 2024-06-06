@@ -27,31 +27,42 @@ builder.Services.AddSingleton<IMongoClient, MongoClient>(sp =>
 builder.Services.AddSingleton<IPersonRepository, CsvPersonRepository>(sp =>
     new CsvPersonRepository("persons.csv"));
 builder.Services.AddTransient<IPersonRepository, SqlPersonRepository>();
+
 //builder.Services.AddTransient<IPersonRepository, MongoPersonRepository>(sp =>
 //{
 //    var client = sp.GetRequiredService<IMongoClient>();
 //    return new MongoPersonRepository(client, "PersonDb", "Persons");
 //});
 
-// Add Person Service
 builder.Services.AddTransient<PersonService>();
 
-// Add AutoMapper Config
 builder.Services.AddAutoMapper(typeof(PersonMappingProfile));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+app.UseStaticFiles();
+
+app.UseDefaultFiles();
+
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
+
+app.Use(async (context, next) =>
+{
+   if (!context.Request.Path.HasValue || context.Request.Path == "/")
+   {
+       context.Response.Redirect("/index.html");
+       return;
+   }
+
+   await next();
+});
 
 app.Run();
