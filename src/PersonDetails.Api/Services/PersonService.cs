@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
-using PersonDetails.Data.Repos;
-using PersonDetails.Models;
+using PersonDetails.Api.Data.Repos;
+using PersonDetails.Api.Models;
+
+namespace PersonDetails.Api.Services;
 
 public class PersonService
 {
@@ -18,7 +20,7 @@ public class PersonService
         var tasks = _repositories.Select(repo => repo.GetPersonsAsync(filter));
         var results = await Task.WhenAll(tasks);
         var persons = results.SelectMany(r => r);
-
-        return _mapper.Map<IEnumerable<PersonResponseModel>>(persons);
+  
+         return _mapper.Map<IEnumerable<PersonResponseModel>>(persons.ToList());
     }
 }

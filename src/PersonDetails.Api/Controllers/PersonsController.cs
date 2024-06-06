@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using PersonDetails.Api.Models;
+using PersonDetails.Api.Services;
+
+namespace PersonDetails.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -14,7 +16,7 @@ public class PersonsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Person>>> Get([FromQuery] string? filter = null)
+    public async Task<ActionResult<IEnumerable<PersonResponseModel>>> Get([FromQuery] string? filter = null)
     {
         var persons = await _personService.GetAllPersonsAsync(filter);
         return Ok(persons);

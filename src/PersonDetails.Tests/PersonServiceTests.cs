@@ -1,10 +1,10 @@
 using AutoMapper;
 using Moq;
-using PersonDetails.Data.Repos;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Xunit;
+using PersonDetails.Api.Data.Entities;
+using PersonDetails.Api.Data.Repos;
+using PersonDetails.Api.Services;
+
+namespace PersonDetails.Tests;
 
 public class PersonServiceTests
 {

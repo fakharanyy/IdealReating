@@ -1,8 +1,10 @@
-﻿using CsvHelper;
+﻿using System.Globalization;
+using CsvHelper;
 using CsvHelper.Configuration;
-using System.Globalization;
-using PersonDetails.Data.Repos;
-using PersonDetails.Mappings;
+using PersonDetails.Api.Data.Entities;
+using PersonDetails.Api.Mappings;
+
+namespace PersonDetails.Api.Data.Repos;
 
 public class CsvPersonRepository : IPersonRepository
 {

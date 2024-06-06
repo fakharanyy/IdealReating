@@ -1,5 +1,5 @@
 ﻿
-namespace PersonDetails.Models
+namespace PersonDetails.Api.Models
 {
     public class PersonResponseModel
     {
@@ -9,6 +9,5 @@ namespace PersonDetails.Models
         public string TelephoneNumber { get; set; }
         public string Address { get; set; }
         public string Country { get; set; }
-        public IAsyncEnumerable<char>? Name { get; set; }
-    }
+     }
 }

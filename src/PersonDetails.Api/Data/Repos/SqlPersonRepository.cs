@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PersonDetails.Data;
-using PersonDetails.Data.Repos;
+using PersonDetails.Api.Data.Entities;
+
+namespace PersonDetails.Api.Data.Repos;
 
 public class SqlPersonRepository : IPersonRepository
 {

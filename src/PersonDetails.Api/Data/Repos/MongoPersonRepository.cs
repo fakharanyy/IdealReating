@@ -1,5 +1,7 @@
 ﻿using MongoDB.Driver;
-using PersonDetails.Data.Repos;
+using PersonDetails.Api.Data.Entities;
+
+namespace PersonDetails.Api.Data.Repos;
 
 public class MongoPersonRepository : IPersonRepository
 {

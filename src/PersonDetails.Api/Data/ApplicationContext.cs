@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PersonDetails.Api.Data.Entities;
 
-namespace PersonDetails.Data
+namespace PersonDetails.Api.Data
 {
 
     public class ApplicationContext : DbContext

@@ -1,6 +1,7 @@
 ﻿using CsvHelper.Configuration;
+using PersonDetails.Api.Data.Entities;
 
-namespace PersonDetails.Mappings
+namespace PersonDetails.Api.Mappings
 {
 
     public class PersonCsvMap : ClassMap<Person>

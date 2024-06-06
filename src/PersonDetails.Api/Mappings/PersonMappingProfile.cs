@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
-using PersonDetails.Models;
+using PersonDetails.Api.Data.Entities;
+using PersonDetails.Api.Models;
+
+namespace PersonDetails.Api.Mappings;
 
 public class PersonMappingProfile : Profile
 {

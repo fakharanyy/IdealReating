@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
-using PersonDetails.Data;
-using PersonDetails.Data.Repos;
+using PersonDetails.Api.Data;
+using PersonDetails.Api.Data.Repos;
+using PersonDetails.Api.Mappings;
+using PersonDetails.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,11 +27,11 @@ builder.Services.AddSingleton<IMongoClient, MongoClient>(sp =>
 builder.Services.AddSingleton<IPersonRepository, CsvPersonRepository>(sp =>
     new CsvPersonRepository("persons.csv"));
 builder.Services.AddTransient<IPersonRepository, SqlPersonRepository>();
-builder.Services.AddTransient<IPersonRepository, MongoPersonRepository>(sp =>
-{
-    var client = sp.GetRequiredService<IMongoClient>();
-    return new MongoPersonRepository(client, "PersonDb", "Persons");
-});
+//builder.Services.AddTransient<IPersonRepository, MongoPersonRepository>(sp =>
+//{
+//    var client = sp.GetRequiredService<IMongoClient>();
+//    return new MongoPersonRepository(client, "PersonDb", "Persons");
+//});
 
 // Add Person Service
 builder.Services.AddTransient<PersonService>();

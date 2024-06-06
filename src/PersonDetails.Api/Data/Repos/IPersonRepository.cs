@@ -1,4 +1,6 @@
-﻿namespace PersonDetails.Data.Repos
+﻿using PersonDetails.Api.Data.Entities;
+
+namespace PersonDetails.Api.Data.Repos
 {
     public interface IPersonRepository
     {
