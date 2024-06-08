@@ -28,15 +28,21 @@ builder.Services.AddSingleton<IPersonRepository, CsvPersonRepository>(sp =>
     new CsvPersonRepository("persons.csv"));
 builder.Services.AddTransient<IPersonRepository, SqlPersonRepository>();
 
-//builder.Services.AddTransient<IPersonRepository, MongoPersonRepository>(sp =>
-//{
-//    var client = sp.GetRequiredService<IMongoClient>();
-//    return new MongoPersonRepository(client, "PersonDb", "Persons");
-//});
+builder.Services.AddTransient<IPersonRepository, MongoPersonRepository>(sp =>
+{
+    var client = sp.GetRequiredService<IMongoClient>();
+    return new MongoPersonRepository(client, "PersonDb", "Persons");
+});
 
 builder.Services.AddTransient<PersonService>();
 
 builder.Services.AddAutoMapper(typeof(PersonMappingProfile));
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowOrigin",
+        builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+});
+
 
 var app = builder.Build();
 
@@ -49,6 +55,9 @@ if (app.Environment.IsDevelopment())
 app.UseStaticFiles();
 
 app.UseDefaultFiles();
+
+app.UseCors("AllowOrigin");
+
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
